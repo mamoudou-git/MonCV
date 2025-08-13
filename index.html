@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Baldé Mamoudou</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+       /* Google Font */
+@font-face {
+    font-family: 'Libertinus Math';
+    src: url('./fonts/LibertinusMath-Regular.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Libertinus Math', serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f4f6fb 100%);
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    max-width: 950px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 6px 32px rgba(80, 72, 229, 0.10);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animation douce à l'affichage */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Colonne gauche */
+.left {
+    background: linear-gradient(135deg, #5048e5 0%, #6ee7b7 100%);
+    color: #fff;
+    width: 32%;
+    padding: 38px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+/* Titre principal */
+.left h1 {
+    font-size: 2.1em;
+    margin: 0 0 8px 0;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+/* Photo de profil */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 4px #ffd700, 0 2px 8px rgba(0,0,0,0.10);
+    margin: 0 auto 18px auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+/* Blocs info/langues/loisirs */
+.left .info, .left .langues, .left .loisirs {
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+/* Sous-titres */
+.left h2 {
+    font-size: 1.1em;
+    margin: 16px 0 8px 0;
+    color: #fff;
+    background: #ffd700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Exceptions pour certaines sections */
+.left .langues h2, .left .loisirs h2 {
+    color: #5048e5;
+    background: #fff;
+}
+
+/* Colonne droite */
+.right {
+    flex: 1;
+    padding: 38px 40px 38px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Titres à droite */
+.right h2 {
+    color: #5048e5;
+    margin-bottom: 8px;
+    font-size: 1.25em;
+    border-left: 5px solid #ffd700;
+    padding-left: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+/* Effet décoratif sous les titres */
+.right h2::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: #ffd700;
+    margin-top: 6px;
+    transition: width 0.3s ease;
+}
+.right h2:hover::after {
+    width: 60px;
+}
+
+/* Listes */
+.right ul {
+    margin: 0 0 0 18px;
+    padding: 0;
+    color: #222;
+    font-size: 1.04em;
+}
+.right li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Bloc profil */
+.profil {
+    font-size: 1.08em;
+    margin-bottom: 12px;
+    color: #5048e5;
+    background: #f3f0ff;
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(80, 72, 229, 0.04);
+    font-weight: 500;
+}
+
+/* Boutons (si tu en ajoutes) */
+button {
+    background-color: #5048e5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+button:hover {
+    background-color: #3b36c9;
+}
+
+/* Responsive design */
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+    .left, .right {
+        width: 100%;
+        padding: 24px;
+    }
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 16px;
+    color: #999;
+    font-size: 0.9em;
+    margin-top: 40px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <img src="./photo.jpg" alt="Photo de Baldé Mamoudou" class="profile-pic">
+            <h1>Baldé Mamoudou</h1>
+            <div class="info">
+                <strong>Adresse :</strong> Dubréka, Keitayah<br>
+                <strong>Tél :</strong> 627464995<br>
+                <strong>Email :</strong> baldemamoudou101@gmail.com
+            </div>
+            <div class="langues">
+                <h2>Langues</h2>
+                <div>Français, Pular, Soussou</div>
+            </div>
+            <div class="loisirs">
+                <h2>Loisirs</h2>
+                <div>Lecture, Sport, Nouvelles technologies</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="profil">
+                Passionné par les technologies du numérique, j’ai achevé en 2025 ma licence à l’Université de Labé (diplôme en cours de délivrance). Curieux, motivé et dynamique, je recherche un stage afin de mettre en pratique mes connaissances et d’acquérir de nouvelles compétences.</div>
+            <div>
+                <h2>Formations</h2>
+                <ul>
+                    <li><strong>Étude primaire</strong> (2009-2015) : Sainte-Marie de Dixinn<br>Diplôme : CEE - 2015</li>
+                    <li><strong>Étude secondaire</strong> (2015-2017) : Sainte-Marie de Dixinn<br>(2018-2019) : École Internationale de Conakry (EIC)<br>Diplôme : Attestation du BEPC - 2019</li>
+                    (2020-2022) : Lycée Sainte-Marie de Dixinn<br>Option : Science Mathématique, session 2022<br>Diplôme : BAC - 2022
+                    <li><strong>Étude universitaire</strong> (Depuis 2022) : Université de Labé<br>Département : Informatique</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Compétences techniques</h2>
+                <ul>
+                    <li>Programmation : Python,Javascript</li>
+                    <li>Développement Web : HTML, CSS,PHP,Node js</li>
+                    <li>Bases de données : MySQL, Oracle</li>
+                    <li>Notion de base en Réseau</li>
+                    <li>Méthodologies : Bonne capacité d'apprentissage, esprit analytique</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Certifications</h2>
+                <ul>
+                    <li>Certificat de formation en Data Science, 17-18 mai 2024 à l'Université de Labé</li>
+                    <li>Certificat de formation en Intelligence Artificielle, 09 septembre-11 octobre 2024 à l'ODC de Ratoma</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
