@@ -71,13 +71,13 @@ body {
 
 /* Photo de profil */
 .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     border-radius: 50%;
     border: 4px solid #fff;
     box-shadow: 0 0 0 4px #ffd700, 0 2px 8px rgba(0,0,0,0.10);
-    margin: 0 auto 18px auto;
+    margin: 0 auto 8px auto;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -89,6 +89,53 @@ body {
 .left .info, .left .langues, .left .loisirs {
     margin-bottom: 16px;
     width: 100%;
+}
+
+/* Styles pour les langues avec barres de progression */
+.langue-item {
+    margin-bottom: 12px;
+}
+
+.langue-nom {
+    font-size: 0.95em;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffed4e);
+    border-radius: 10px;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Styles pour les icônes des infos */
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.info-item i {
+    font-size: 1.1em;
+    color: #ffd700;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
 }
 
 /* Sous-titres */
@@ -184,14 +231,462 @@ button:hover {
     background-color: #3b36c9;
 }
 
+/* Améliorations pour la responsivité des images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.profile-pic {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Amélioration de la lisibilité du texte */
+body {
+    word-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.container {
+    word-wrap: break-word;
+}
+
+.left, .right {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Amélioration pour les liens (si ajoutés plus tard) */
+a {
+    word-wrap: break-word;
+}
+
+/* Amélioration pour les longues lignes de texte */
+.info, .langues, .loisirs {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.profil {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.right ul {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Empêcher le débordement horizontal */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
 /* Responsive design */
-@media (max-width: 700px) {
+/* Tablettes et écrans moyens (max-width: 992px) */
+@media (max-width: 992px) {
+    .container {
+        max-width: 95%;
+        margin: 20px auto;
+    }
+    
+    .left {
+        width: 35%;
+        padding: 30px 20px;
+    }
+    
+    .right {
+        padding: 30px 30px;
+    }
+    
+    /* Amélioration des images sur tablettes moyennes */
+    .profile-pic {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Optimisation du texte */
+    .info, .langues, .loisirs {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .right ul, .right li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Tablettes en mode portrait (max-width: 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        max-width: 95%;
+        margin: 15px auto;
+        border-radius: 15px;
+    }
+    
     .container {
         flex-direction: column;
     }
-    .left, .right {
+    
+    .left {
         width: 100%;
-        padding: 24px;
+        padding: 30px 24px;
+        gap: 20px;
+    }
+    
+    .left h1 {
+        font-size: 1.8em;
+    }
+    
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+        max-width: 180px;
+        max-height: 180px;
+    }
+    
+    .right {
+        width: 100%;
+        padding: 30px 24px;
+        gap: 20px;
+    }
+    
+    .right h2 {
+        font-size: 1.15em;
+    }
+    
+    .profil {
+        padding: 14px 16px;
+        font-size: 1em;
+        line-height: 1.6;
+    }
+    
+    /* Amélioration des images sur tablettes */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Optimisation du texte */
+    .info, .langues, .loisirs {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.5;
+    }
+    
+    .right ul {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .right li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Téléphones et petits écrans (max-width: 576px) */
+@media (max-width: 576px) {
+    body {
+        font-size: 15px;
+    }
+    
+    .container {
+        max-width: 100%;
+        margin: 10px;
+        border-radius: 12px;
+    }
+    
+    .left {
+        padding: 24px 20px;
+        gap: 18px;
+    }
+    
+    .left h1 {
+        font-size: 1.6em;
+        margin-bottom: 6px;
+    }
+    
+    .profile-pic {
+        width: 170px;
+        height: 170px;
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 3px #ffd700, 0 2px 6px rgba(0,0,0,0.10);
+    }
+    
+    .left h2 {
+        font-size: 1em;
+        padding: 3px 10px;
+        margin: 12px 0 6px 0;
+    }
+    
+    .left .info {
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+    
+    .right {
+        padding: 24px 20px;
+        gap: 18px;
+    }
+    
+    .right h2 {
+        font-size: 1.1em;
+        padding-left: 10px;
+        border-left-width: 4px;
+    }
+    
+    .profil {
+        padding: 12px 14px;
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+    
+    .right ul {
+        font-size: 0.95em;
+        margin-left: 16px;
+    }
+    
+    .right li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+    
+    /* Amélioration des images sur petits écrans */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Amélioration du texte pour éviter les débordements */
+    .info, .langues, .loisirs {
+        word-break: break-word;
+        hyphens: auto;
+    }
+    
+    /* Gestion des emails et liens longs */
+    .info strong {
+        display: block;
+        margin-top: 8px;
+    }
+    
+    .info br {
+        display: block;
+        margin: 4px 0;
+    }
+}
+
+/* Très petits écrans (max-width: 400px) */
+@media (max-width: 400px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        margin: 5px;
+        border-radius: 10px;
+    }
+    
+    .left {
+        padding: 20px 16px;
+        gap: 16px;
+    }
+    
+    .left h1 {
+        font-size: 1.4em;
+    }
+    
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .left h2 {
+        font-size: 0.95em;
+        padding: 3px 8px;
+    }
+    
+    .left .info {
+        font-size: 0.9em;
+    }
+    
+    .right {
+        padding: 20px 16px;
+        gap: 16px;
+    }
+    
+    .right h2 {
+        font-size: 1.05em;
+        padding-left: 8px;
+        border-left-width: 3px;
+    }
+    
+    .profil {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    
+    .right ul {
+        font-size: 0.9em;
+        margin-left: 14px;
+    }
+    
+    /* Amélioration des images sur très petits écrans */
+    .profile-pic {
+        max-width: 150px;
+        max-height: 150px;
+    }
+    
+    /* Amélioration du texte pour éviter les débordements */
+    .info, .langues, .loisirs {
+        word-break: break-word;
+        hyphens: auto;
+        line-height: 1.4;
+    }
+    
+    /* Gestion optimisée des emails et textes longs */
+    .info strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 0.95em;
+    }
+    
+    .profil {
+        text-align: justify;
+        hyphens: auto;
+    }
+    
+    /* Amélioration des listes */
+    .right li {
+        word-break: break-word;
+        hyphens: auto;
+    }
+}
+
+/* Orientation paysage sur petits écrans */
+@media (max-width: 768px) and (orientation: landscape) {
+    .left {
+        padding: 20px 24px;
+    }
+    
+    .right {
+        padding: 20px 24px;
+    }
+    
+    .profile-pic {
+        width: 130px;
+        height: 130px;
+        max-width: 130px;
+        max-height: 130px;
+    }
+    
+    /* Optimisation du texte en mode paysage */
+    .left h1 {
+        font-size: 1.5em;
+    }
+    
+    .info, .langues, .loisirs {
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+    
+    .right h2 {
+        font-size: 1.05em;
+    }
+    
+    .profil {
+        font-size: 0.92em;
+        padding: 10px 14px;
+    }
+}
+
+/* Grands écrans (min-width: 1200px) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1100px;
+    }
+    
+    .left {
+        padding: 40px 28px;
+    }
+    
+    .right {
+        padding: 40px 50px;
+    }
+    
+    /* Optimisation des images sur grands écrans */
+    .profile-pic {
+        max-width: 220px;
+        max-height: 220px;
+    }
+    
+    /* Amélioration de la lisibilité */
+    .profil {
+        line-height: 1.7;
+    }
+    
+    .right ul, .right li {
+        line-height: 1.7;
+    }
+}
+
+/* Écrans intermédiaires (min-width: 993px et max-width: 1199px) */
+@media (min-width: 993px) and (max-width: 1199px) {
+    .container {
+        max-width: 1000px;
+    }
+    
+    /* Optimisation des images */
+    .profile-pic {
+        max-width: 210px;
+        max-height: 210px;
+    }
+    
+    /* Amélioration de la lisibilité */
+    .profil {
+        line-height: 1.65;
+    }
+}
+
+/* Très grands écrans (min-width: 1400px) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1300px;
+    }
+    
+    body {
+        font-size: 19px;
+    }
+    
+    /* Optimisation des images sur très grands écrans */
+    .profile-pic {
+        max-width: 230px;
+        max-height: 230px;
+    }
+    
+    /* Amélioration de la lisibilité */
+    .profil {
+        line-height: 1.8;
+        font-size: 1.1em;
+    }
+    
+    .right ul, .right li {
+        line-height: 1.8;
+    }
+    
+    .info, .langues, .loisirs {
+        line-height: 1.7;
     }
 }
 
@@ -209,49 +704,86 @@ footer {
 <body>
     <div class="container">
         <div class="left">
-            <img src="./photo.jpg" alt="Photo de Baldé Mamoudou" class="profile-pic">
+            <img src="./d.jpg" alt="Photo de Baldé Mamoudou" class="profile-pic">
             <h1>Baldé Mamoudou</h1>
             <div class="info">
-                <strong>Adresse :</strong> Dubréka, Keitayah<br>
-                <strong>Tél :</strong> 627464995<br>
-                <strong>Email :</strong> baldemamoudou101@gmail.com
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i> Dubréka, Keitayah
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i> 627464995
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i> baldemamoudou101@gmail.com
+                </div>
             </div>
             <div class="langues">
                 <h2>Langues</h2>
-                <div>Français, Pular, Soussou</div>
+                <div class="langue-item">
+                    <div class="langue-nom">Français</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="langue-item">
+                    <div class="langue-nom">Anglais</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 50%;"></div>
+                    </div>
+                </div>
+                <div class="langue-item">
+                    <div class="langue-nom">Espagnol</div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 25%;"></div>
+                    </div>
+                </div>
+                
             </div>
             <div class="loisirs">
-                <h2>Loisirs</h2>
-                <div>Lecture, Sport, Nouvelles technologies</div>
+                <h2>INTÉRÊTS</h2>
+                <li>Lecture et apprentissage des langues (Anglais,Espagnol)</li>
+                <li>Nouvelles technologies</li>
+                <li>Sports: Football,Basket,F1,Tennis</li>
+                
             </div>
         </div>
         <div class="right">
             <div class="profil">
-                Passionné par les technologies du numérique, j’ai achevé en 2025 ma licence à l’Université de Labé (diplôme en cours de délivrance). Curieux, motivé et dynamique, je recherche un stage afin de mettre en pratique mes connaissances et d’acquérir de nouvelles compétences.</div>
+                Passionné par les technologies du numérique et récemment diplômé d’une Licence en Informatique à l’Université de Labé (diplôme en cours de délivrance), je souhaite intégrer une structure innovante où je pourrai mettre en pratique mes acquis, renforcer mes compétences techniques et contribuer activement à des projets concrets.</div>
             <div>
                 <h2>Formations</h2>
                 <ul>
-                    <li><strong>Étude primaire</strong> (2009-2015) : Sainte-Marie de Dixinn<br>Diplôme : CEE - 2015</li>
+                    <li><strong>Étude universitaire </strong> (2022-2025)  Université de Labé:<br>   
+                        <ul>
+                            <li>Licence 1 Informatique  (2022-2023)   Informatique de base - Algebre - Systeme d'exploitattion - Algorithme et Programmation - Conception des systemes d'information - Electronique - Anglais et logique/Architecture</li> 
+                            <li>Licence 2 Informatique  (2023-2024)   Algorithme 2 - Probabilité Statistiques - Maintenance - UML - Langage C - MySQL - Initiation Réseau - Access - Linux</li>
+                            <li>Licence 3 Informatique  (2024-2025)   HTML5/CSS3 - Python - Java1&2 - Oracle - PHP - Administration Réseau windows & Linux - Windev - C++</li>
+                        </ul>
+                    </li>
                     <li><strong>Étude secondaire</strong> (2015-2017) : Sainte-Marie de Dixinn<br>(2018-2019) : École Internationale de Conakry (EIC)<br>Diplôme : Attestation du BEPC - 2019</li>
                     (2020-2022) : Lycée Sainte-Marie de Dixinn<br>Option : Science Mathématique, session 2022<br>Diplôme : BAC - 2022
-                    <li><strong>Étude universitaire</strong> (Depuis 2022) : Université de Labé<br>Département : Informatique</li>
+                    
+                    <li><strong>Étude primaire</strong> (2009-2015) : Sainte-Marie de Dixinn<br>Diplôme : CEE - 2015</li>
+                    
                 </ul>
             </div>
             <div>
                 <h2>Compétences techniques</h2>
                 <ul>
-                    <li>Programmation : Python,Javascript</li>
-                    <li>Développement Web : HTML, CSS,PHP,Node js</li>
-                    <li>Bases de données : MySQL, Oracle</li>
+                    <li>Développeur backend (Node js)</li>
+                    <li>Programmation : Python,C</li>
+                    <li>Développement Web : HTML, CSS,PHP,Javascript</li>
+                    <li>Bases de données : MySQL, Oracle,MongoDB</li>
                     <li>Notion de base en Réseau</li>
-                    <li>Méthodologies : Bonne capacité d'apprentissage, esprit analytique</li>
+                    <li>Méthodologies : Bonne capacité d'apprentissage et d'adaptation, esprit analytique</li>
+                    
                 </ul>
             </div>
             <div>
                 <h2>Certifications</h2>
                 <ul>
-                    <li>Certificat de formation en Data Science, 17-18 mai 2024 à l'Université de Labé</li>
-                    <li>Certificat de formation en Intelligence Artificielle, 09 septembre-11 octobre 2024 à l'ODC de Ratoma</li>
+                    <li>Certificat de formation d'initiation en Data Science, 17-18 mai 2024 à l'Université de Labé</li>
+                    <li>Formation en Intelligence Artificielle, 09 septembre-11 octobre 2024 à l'ODC de Ratoma</li>
                 </ul>
             </div>
         </div>
