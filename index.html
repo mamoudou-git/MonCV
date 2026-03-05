@@ -9,75 +9,103 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <style>
-       /* Google Font */
-@font-face {
-    font-family: 'Libertinus Math';
-    src: url('./fonts/LibertinusMath-Regular.ttf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+/* --- variables & system --- */
+:root {
+    --font-family: 'Libertinus Math', serif;
+    --color-bg: linear-gradient(135deg,#e0e7ff 0%,#f4f6fb 100%);
+    --color-primary: #5048e5;
+    --color-secondary: #6ee7b7;
+    --color-support: #9fe6ba; /* vert clair d'accompagnement */
+    --color-accent: #ffd700;
+    --color-text: #222;
+    --radius: 1rem;
+    --shadow: 0 6px 32px rgba(80,72,229,.1);
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --max-container: 90vw;
+    --max-width: 85ch;
 }
 
-body {
+html {
+    box-sizing: border-box;
+    font-size: clamp(0.75rem,1vw + 0.5rem,1rem);
+    background: var(--color-bg);
+    overflow-x: hidden;
+}
+*,*::before,*::after{box-sizing:inherit;}
+
+body{
+    margin:0;
+    font-family: 'Bookman, URW Bookman L', serif;
+    color:var(--color-text);
+    line-height:1.6;
+    background:var(--color-bg);
+}
+
+img,picture,video,svg{max-width:100%;height:auto;display:block;}
+a{color:var(--color-primary);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* container */
+.container{
+    max-width:var(--max-width);
+    width:var(--max-container);
+    margin:var(--space-lg) auto;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(10px);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    display:grid;
+    grid-template-columns:32% 1fr;   /* deux colonnes par défaut */
+    gap:var(--space-lg);
+    transition:all .3s ease-in-out;
+    animation:fadeIn .8s ease-in-out;
+    container-type: inline-size;
+    container-name: cv;
+}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(1rem);}to{opacity:1;transform:translateY(0);}}
+
+/* two column once container is wide */
+@container (max-width:600px){
+    .container{grid-template-columns:1fr;}
+    .left, .right{border-radius:var(--radius);}
+}
+
+/* left side */
+.left{
+    /* simple two-color gradient as in original design */
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color:#fff;
+    padding:var(--space-xl) var(--space-lg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:var(--space-lg);
+    border-top-left-radius:var(--radius);
+    border-bottom-left-radius:var(--radius);
+}
+.left h1{
     font-family: 'Libertinus Math', serif;
-    background: linear-gradient(135deg, #e0e7ff 0%, #f4f6fb 100%);
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
+    font-size:clamp(1.8rem,5vw,2.4rem);
+    margin:0;
+    font-weight:700;
+    color:var(--color-accent);
+    text-shadow:0 2px 8px rgba(0,0,0,.1);
 }
-
-
-/* Conteneur principal */
-.container {
-    display: flex;
-    max-width: 950px;
-    margin: 40px auto;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 6px 32px rgba(80, 72, 229, 0.10);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-/* Animation douce à l'affichage */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Colonne gauche */
-.left {
-    background: linear-gradient(135deg, #5048e5 0%, #6ee7b7 100%);
-    color: #fff;
-    width: 32%;
-    padding: 38px 24px 32px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-}
-
-/* Titre principal */
-.left h1 {
-    font-size: 2.1em;
-    margin: 0 0 8px 0;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #ffd700;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
-}
-
 /* Photo de profil */
 .profile-pic {
-    width: 220px;
-    height: 220px;
+    width: 13.75rem; /* 220px -> rem pour flexibilité */
+    height: 13.75rem;
     object-fit: cover;
+    object-position: center 30%;
     border-radius: 50%;
     border: 4px solid #fff;
     box-shadow: 0 0 0 4px #ffd700, 0 2px 8px rgba(0,0,0,0.10);
-    margin: 0 auto 8px auto;
+    margin: 0 auto 0.5rem auto;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -85,28 +113,28 @@ body {
     transform: scale(1.05);
 }
 
-/* Blocs info/langues/loisirs */
-.left .info, .left .langues, .left .loisirs {
-    margin-bottom: 16px;
+.info,.langues,.loisirs{
+    margin-bottom: 1rem;
     width: 100%;
 }
 
 /* Styles pour les langues avec barres de progression */
 .langue-item {
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
 }
 
 .langue-nom {
-    font-size: 0.95em;
-    margin-bottom: 4px;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
     font-weight: 500;
     color: #fff;
 }
 
 .progress-bar {
-    width: 100%;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.3);
+    width: 80%; /* reduced length */
+    max-width: 12rem;
+    height: 0.5rem;
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -114,37 +142,19 @@ body {
 
 .progress {
     height: 100%;
-    background: linear-gradient(90deg, #ffd700, #ffed4e);
-    border-radius: 10px;
+    background: linear-gradient(90deg, var(--color-accent), #ffed4e);
+    border-radius: inherit;
     transition: width 0.6s ease;
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
-/* Styles pour les icônes des infos */
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-size: 0.95em;
-    line-height: 1.4;
-}
-
-.info-item i {
-    font-size: 1.1em;
-    color: #ffd700;
-    flex-shrink: 0;
-    width: 18px;
-    text-align: center;
-}
-
-/* Sous-titres */
+/* Sous-titres (h2) */
 .left h2 {
-    font-size: 1.1em;
-    margin: 16px 0 8px 0;
+    font-size: 1.1rem;
+    margin: 1rem 0 0.5rem 0;
     color: #fff;
     background: #ffd700;
-    padding: 4px 12px;
+    padding: 0.25rem 0.75rem;
     border-radius: 12px;
     display: inline-block;
     font-weight: 600;
@@ -156,550 +166,52 @@ body {
     color: #5048e5;
     background: #fff;
 }
+.langue-nom{font-size:clamp(0.85rem,1vw,1rem);font-weight:500;}
+.progress-bar{width:100%;height:.25rem;background:rgba(255,255,255,.3);border-radius:10px;}
+.progress{height:100%;background:linear-gradient(90deg,var(--color-accent),#ffed4e);border-radius:10px;transition:width .6s;}
 
-/* Colonne droite */
-.right {
-    flex: 1;
-    padding: 38px 40px 38px 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+/* right side */
+.right{
+    padding:var(--space-xl) var(--space-lg);
+    display:flex;
+    flex-direction:column;
+    gap:var(--space-lg);
+    border-top-right-radius:var(--radius);
+    border-bottom-right-radius:var(--radius);
 }
+.right h2{
+    position:relative;
+    font-size:clamp(1.1rem,2.5vw,1.4rem);
+    color:var(--color-primary);
+    font-weight:600;
+    border-left:5px solid var(--color-accent);
+    padding-left:var(--space-sm);
+}
+.right h2::after{content:'';display:block;width:30px;height:3px;background:var(--color-accent);margin-top:6px;transition:width .3s;}
+.right h2:hover::after{width:60px;}
+.right ul{margin:0 0 0 1rem;padding:0;}
+.right li{margin-bottom:var(--space-sm);}
 
-/* Titres à droite */
-.right h2 {
-    color: #5048e5;
-    margin-bottom: 8px;
-    font-size: 1.25em;
-    border-left: 5px solid #ffd700;
-    padding-left: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    position: relative;
-}
+.profil{background:#f3f0ff;color:var(--color-primary);padding:var(--space-md) var(--space-lg);border-radius:var(--radius);box-shadow:0 2px 8px rgba(80,72,229,.04);font-size:clamp(1rem,2.5vw,1.1rem);line-height:1.6;font-weight:500;}
 
-/* Effet décoratif sous les titres */
-.right h2::after {
-    content: '';
-    display: block;
-    width: 30px;
-    height: 3px;
-    background: #ffd700;
-    margin-top: 6px;
-    transition: width 0.3s ease;
-}
-.right h2:hover::after {
-    width: 60px;
-}
+/* larger breakpoints */
+@media (min-width:992px){.container{max-width:1100px;} .left{padding:var(--space-xl) var(--space-lg);} .right{padding:var(--space-xl) var(--space-xl);}}
+@media (min-width:1400px){body{font-size:1.125rem;} .container{max-width:1300px;}}
 
-/* Listes */
-.right ul {
-    margin: 0 0 0 18px;
-    padding: 0;
-    color: #222;
-    font-size: 1.04em;
+/* print & pdf */
+@media print{
+    html,body{background:#fff;color:#000;font-size:11pt;}
+    .container{box-shadow:none;background:none;}
+    .left{background:none;color:#000;}
+    .profile-pic{display:none;}
+    .right h2{border-left:none;}
+    footer{display:none;}
+    *{page-break-inside:avoid;}
+    a::after{content:' (' attr(href) ')';font-size:0.85em;}
 }
-.right li {
-    margin-bottom: 8px;
-    line-height: 1.6;
-}
+@page{size:A4;margin:1cm;}
 
-/* Bloc profil */
-.profil {
-    font-size: 1.08em;
-    margin-bottom: 12px;
-    color: #5048e5;
-    background: #f3f0ff;
-    border-radius: 10px;
-    padding: 16px 18px;
-    box-shadow: 0 2px 8px rgba(80, 72, 229, 0.04);
-    font-weight: 500;
-}
-
-/* Boutons (si tu en ajoutes) */
-button {
-    background-color: #5048e5;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-button:hover {
-    background-color: #3b36c9;
-}
-
-/* Améliorations pour la responsivité des images */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.profile-pic {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Amélioration de la lisibilité du texte */
-body {
-    word-wrap: break-word;
-    overflow-x: hidden;
-}
-
-.container {
-    word-wrap: break-word;
-}
-
-.left, .right {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Amélioration pour les liens (si ajoutés plus tard) */
-a {
-    word-wrap: break-word;
-}
-
-/* Amélioration pour les longues lignes de texte */
-.info, .langues, .loisirs {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.profil {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.right ul {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Empêcher le débordement horizontal */
-* {
-    box-sizing: border-box;
-}
-
-html {
-    overflow-x: hidden;
-}
-
-/* Responsive design */
-/* Tablettes et écrans moyens (max-width: 992px) */
-@media (max-width: 992px) {
-    .container {
-        max-width: 95%;
-        margin: 20px auto;
-    }
-    
-    .left {
-        width: 35%;
-        padding: 30px 20px;
-    }
-    
-    .right {
-        padding: 30px 30px;
-    }
-    
-    /* Amélioration des images sur tablettes moyennes */
-    .profile-pic {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Optimisation du texte */
-    .info, .langues, .loisirs {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-    
-    .right ul, .right li {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-}
-
-/* Tablettes en mode portrait (max-width: 768px) */
-@media (max-width: 768px) {
-    body {
-        font-size: 16px;
-    }
-    
-    .container {
-        max-width: 95%;
-        margin: 15px auto;
-        border-radius: 15px;
-    }
-    
-    .container {
-        flex-direction: column;
-    }
-    
-    .left {
-        width: 100%;
-        padding: 30px 24px;
-        gap: 20px;
-    }
-    
-    .left h1 {
-        font-size: 1.8em;
-    }
-    
-    .profile-pic {
-        width: 180px;
-        height: 180px;
-        max-width: 180px;
-        max-height: 180px;
-    }
-    
-    .right {
-        width: 100%;
-        padding: 30px 24px;
-        gap: 20px;
-    }
-    
-    .right h2 {
-        font-size: 1.15em;
-    }
-    
-    .profil {
-        padding: 14px 16px;
-        font-size: 1em;
-        line-height: 1.6;
-    }
-    
-    /* Amélioration des images sur tablettes */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Optimisation du texte */
-    .info, .langues, .loisirs {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        line-height: 1.5;
-    }
-    
-    .right ul {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-    
-    .right li {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-}
-
-/* Téléphones et petits écrans (max-width: 576px) */
-@media (max-width: 576px) {
-    body {
-        font-size: 15px;
-    }
-    
-    .container {
-        max-width: 100%;
-        margin: 10px;
-        border-radius: 12px;
-    }
-    
-    .left {
-        padding: 24px 20px;
-        gap: 18px;
-    }
-    
-    .left h1 {
-        font-size: 1.6em;
-        margin-bottom: 6px;
-    }
-    
-    .profile-pic {
-        width: 170px;
-        height: 170px;
-        border: 3px solid #fff;
-        box-shadow: 0 0 0 3px #ffd700, 0 2px 6px rgba(0,0,0,0.10);
-    }
-    
-    .left h2 {
-        font-size: 1em;
-        padding: 3px 10px;
-        margin: 12px 0 6px 0;
-    }
-    
-    .left .info {
-        font-size: 0.95em;
-        line-height: 1.5;
-    }
-    
-    .right {
-        padding: 24px 20px;
-        gap: 18px;
-    }
-    
-    .right h2 {
-        font-size: 1.1em;
-        padding-left: 10px;
-        border-left-width: 4px;
-    }
-    
-    .profil {
-        padding: 12px 14px;
-        font-size: 0.95em;
-        line-height: 1.5;
-    }
-    
-    .right ul {
-        font-size: 0.95em;
-        margin-left: 16px;
-    }
-    
-    .right li {
-        margin-bottom: 10px;
-        line-height: 1.5;
-    }
-    
-    /* Amélioration des images sur petits écrans */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    /* Amélioration du texte pour éviter les débordements */
-    .info, .langues, .loisirs {
-        word-break: break-word;
-        hyphens: auto;
-    }
-    
-    /* Gestion des emails et liens longs */
-    .info strong {
-        display: block;
-        margin-top: 8px;
-    }
-    
-    .info br {
-        display: block;
-        margin: 4px 0;
-    }
-}
-
-/* Très petits écrans (max-width: 400px) */
-@media (max-width: 400px) {
-    body {
-        font-size: 14px;
-    }
-    
-    .container {
-        margin: 5px;
-        border-radius: 10px;
-    }
-    
-    .left {
-        padding: 20px 16px;
-        gap: 16px;
-    }
-    
-    .left h1 {
-        font-size: 1.4em;
-    }
-    
-    .profile-pic {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .left h2 {
-        font-size: 0.95em;
-        padding: 3px 8px;
-    }
-    
-    .left .info {
-        font-size: 0.9em;
-    }
-    
-    .right {
-        padding: 20px 16px;
-        gap: 16px;
-    }
-    
-    .right h2 {
-        font-size: 1.05em;
-        padding-left: 8px;
-        border-left-width: 3px;
-    }
-    
-    .profil {
-        padding: 10px 12px;
-        font-size: 0.9em;
-    }
-    
-    .right ul {
-        font-size: 0.9em;
-        margin-left: 14px;
-    }
-    
-    /* Amélioration des images sur très petits écrans */
-    .profile-pic {
-        max-width: 150px;
-        max-height: 150px;
-    }
-    
-    /* Amélioration du texte pour éviter les débordements */
-    .info, .langues, .loisirs {
-        word-break: break-word;
-        hyphens: auto;
-        line-height: 1.4;
-    }
-    
-    /* Gestion optimisée des emails et textes longs */
-    .info strong {
-        display: block;
-        margin-top: 6px;
-        font-size: 0.95em;
-    }
-    
-    .profil {
-        text-align: justify;
-        hyphens: auto;
-    }
-    
-    /* Amélioration des listes */
-    .right li {
-        word-break: break-word;
-        hyphens: auto;
-    }
-}
-
-/* Orientation paysage sur petits écrans */
-@media (max-width: 768px) and (orientation: landscape) {
-    .left {
-        padding: 20px 24px;
-    }
-    
-    .right {
-        padding: 20px 24px;
-    }
-    
-    .profile-pic {
-        width: 130px;
-        height: 130px;
-        max-width: 130px;
-        max-height: 130px;
-    }
-    
-    /* Optimisation du texte en mode paysage */
-    .left h1 {
-        font-size: 1.5em;
-    }
-    
-    .info, .langues, .loisirs {
-        font-size: 0.9em;
-        line-height: 1.4;
-    }
-    
-    .right h2 {
-        font-size: 1.05em;
-    }
-    
-    .profil {
-        font-size: 0.92em;
-        padding: 10px 14px;
-    }
-}
-
-/* Grands écrans (min-width: 1200px) */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1100px;
-    }
-    
-    .left {
-        padding: 40px 28px;
-    }
-    
-    .right {
-        padding: 40px 50px;
-    }
-    
-    /* Optimisation des images sur grands écrans */
-    .profile-pic {
-        max-width: 220px;
-        max-height: 220px;
-    }
-    
-    /* Amélioration de la lisibilité */
-    .profil {
-        line-height: 1.7;
-    }
-    
-    .right ul, .right li {
-        line-height: 1.7;
-    }
-}
-
-/* Écrans intermédiaires (min-width: 993px et max-width: 1199px) */
-@media (min-width: 993px) and (max-width: 1199px) {
-    .container {
-        max-width: 1000px;
-    }
-    
-    /* Optimisation des images */
-    .profile-pic {
-        max-width: 210px;
-        max-height: 210px;
-    }
-    
-    /* Amélioration de la lisibilité */
-    .profil {
-        line-height: 1.65;
-    }
-}
-
-/* Très grands écrans (min-width: 1400px) */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1300px;
-    }
-    
-    body {
-        font-size: 19px;
-    }
-    
-    /* Optimisation des images sur très grands écrans */
-    .profile-pic {
-        max-width: 230px;
-        max-height: 230px;
-    }
-    
-    /* Amélioration de la lisibilité */
-    .profil {
-        line-height: 1.8;
-        font-size: 1.1em;
-    }
-    
-    .right ul, .right li {
-        line-height: 1.8;
-    }
-    
-    .info, .langues, .loisirs {
-        line-height: 1.7;
-    }
-}
-
-/* Pied de page */
-footer {
-    text-align: center;
-    padding: 16px;
-    color: #999;
-    font-size: 0.9em;
-    margin-top: 40px;
-}
-
-    </style>
+</style>
 </head>
 <body>
     <div class="container">
@@ -708,7 +220,7 @@ footer {
             <h1>Baldé Mamoudou</h1>
             <div class="info">
                 <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i> Dubréka, Keitayah
+                    <i class="fas fa-map-marker-alt"></i>  Keitayah
                 </div>
                 <div class="info-item">
                     <i class="fas fa-phone"></i> 627464995
@@ -728,15 +240,10 @@ footer {
                 <div class="langue-item">
                     <div class="langue-nom">Anglais</div>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 50%;"></div>
-                    </div>
-                </div>
-                <div class="langue-item">
-                    <div class="langue-nom">Espagnol</div>
-                    <div class="progress-bar">
                         <div class="progress" style="width: 25%;"></div>
                     </div>
                 </div>
+                
                 
             </div>
             <div class="loisirs">
@@ -770,11 +277,11 @@ footer {
             <div>
                 <h2>Compétences techniques</h2>
                 <ul>
-                    <li>Développeur backend (Node js)</li>
+                    
                     <li>Programmation : Python,C</li>
-                    <li>Développement Web : HTML, CSS,PHP,Javascript</li>
+                    <li>Développement Web : HTML, CSS,PHP,Javascript,Node js</li>
                     <li>Bases de données : MySQL, Oracle,MongoDB</li>
-                    <li>Notion de base en Réseau</li>
+                    <li>Informatique de base(Word,Excel,PowerPoint)</li>
                     <li>Méthodologies : Bonne capacité d'apprentissage et d'adaptation, esprit analytique</li>
                     
                 </ul>
@@ -784,7 +291,6 @@ footer {
                 <ul>
                     <li>Certificat de formation d'initiation en Data Science, 17-18 mai 2024 à l'Université de Labé</li>
                     <li>Formation en Intelligence Artificielle, 09 septembre-11 octobre 2024 à l'ODC de Ratoma</li>
-                    <li>Formation en pile stack MERN</li>
                 </ul>
             </div>
         </div>
